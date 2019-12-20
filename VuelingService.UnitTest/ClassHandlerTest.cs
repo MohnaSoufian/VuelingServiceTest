@@ -6,20 +6,20 @@ using NUnit.Framework;
 
 namespace VuelingService.UnitTest
 {
-    [TestFixture]
-    public class ClassHandlerTest
-    {
-        [Test]
-        public void FirstFunction()
-        {
-            Assert.AreEqual(1, 0);
-        }
+    //[TestFixture]
+    //public class ClassHandlerTest
+    //{
+    //    [Test]
+    //    public void FirstFunction()
+    //    {
+    //        Assert.AreEqual(1, 0);
+    //    }
 
-        [Test]
-        public void FirstFunction()
-        {
-            Assert.AreEqual(1, 0);
-        }
-    }
+    //    [Test]
+    //    public void SecondFunction()
+    //    {
+    //        Assert.AreEqual(1, 0);
+    //    }
+    //}
 
 }
