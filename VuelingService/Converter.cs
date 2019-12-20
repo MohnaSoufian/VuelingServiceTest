@@ -15,7 +15,9 @@ namespace VuelingService
                             where (string)el.Attribute("from") == fr && (string)el.Attribute("to") == to
                             select (decimal)el.Attribute("rate"));
 
-            return (rateList != null && rateList.Count()!=0) ? rateList.SingleOrDefault() : 0;
+            ExeptionLog.Save(" GetExistingRate method  result" + rateList.SingleOrDefault());
+
+            return (rateList != null && rateList.Count() != 0) ? rateList.SingleOrDefault() : 0;
         }
 
 
@@ -23,7 +25,7 @@ namespace VuelingService
         public bool HasToBeConverted(string fr, string to, List<XElement> rates)
         {
             bool result = false;
-            decimal rate = GetExistingRate(fr , to, rates);
+            decimal rate = GetExistingRate(fr, to, rates);
             if (rate == 0)
                 result = true;
             return result;
@@ -32,12 +34,13 @@ namespace VuelingService
         // this method will be used two times: exchanging parameters.
         public decimal GetConvertedRate(string fr, string to, List<XElement> rates)
         {
-            decimal result=0;
+            decimal result = 0;
             ReadingFile Reader = new ReadingFile();
             var posibleList = (from el in rates
-                                   where (string)el.Attribute("from") == fr
-                                   select el).ToList();
-            if (posibleList.Count()!=0 && posibleList != null)
+                               where (string)el.Attribute("from") == fr
+                               select el).ToList();
+            ExeptionLog.Save("methodo GetConvertedRate  posibleList.Count() is:  " + posibleList.Count());
+            if (posibleList.Count() != 0 && posibleList != null)
             {
                 foreach (XElement e in posibleList)
                 {
@@ -50,6 +53,7 @@ namespace VuelingService
                     if (temporaryRate2 != 0)
                     {
                         result = temporaryRate * temporaryRate2;
+                        ExeptionLog.Save(" the result of GetConvertedRate When temporaryRate2 !=0  = " + result);
                         break;
                     }
 
@@ -57,7 +61,7 @@ namespace VuelingService
 
             }
 
-            
+
             return result;
 
         }
@@ -69,13 +73,16 @@ namespace VuelingService
 
             if (HasToBeConverted(fr, to, rates))
             {
+
                 rate = GetConvertedRate(fr, to, rates);
-                amountEuro = amount * rate;            
+                amountEuro = amount * rate;
+                ExeptionLog.Save("method Converting when HasToBeConverted amountEuro is:  " + amountEuro);
             }
             else
             {
                 rate = GetExistingRate(fr, to, rates);
                 amountEuro = amount * rate;
+                ExeptionLog.Save("method Converting when not HasToBeConverted amountEuro is:  " + amountEuro);
             }
             return amountEuro;
 
