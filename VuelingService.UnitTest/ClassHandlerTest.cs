@@ -6,20 +6,24 @@ using NUnit.Framework;
 
 namespace VuelingService.UnitTest
 {
-    //[TestFixture]
-    //public class ClassHandlerTest
-    //{
-    //    [Test]
-    //    public void FirstFunction()
-    //    {
-    //        Assert.AreEqual(1, 0);
-    //    }
+    [TestFixture]
+    public class ClassHandlerTest
+    {
+        [Test]
+        public void GetAllrates_XMLFileFound_ResultReturnList()
+        {
+            ClassHandler handler = new ClassHandler();
 
-    //    [Test]
-    //    public void SecondFunction()
-    //    {
-    //        Assert.AreEqual(1, 0);
-    //    }
-    //}
+            List<string> list = handler.GetAllRates("http://quiet-stone-2094.herokuapp.com/rates.xml", "rate");
+
+            Assert.IsNotEmpty(list);
+        }
+
+        //[Test]
+        //public void SecondFunction()
+        //{
+        //    Assert.AreEqual(1, 0);
+        //}
+    }
 
 }

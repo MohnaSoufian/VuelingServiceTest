@@ -30,7 +30,7 @@ namespace VuelingService
         public List<string> GetAllRates()
         {
             ClassHandler handlerObject = new ClassHandler();
-            return handlerObject.FirstFunction();
+            return handlerObject.GetAllRates("http://quiet-stone-2094.herokuapp.com/rates.xml", "rate");
 
         }
 

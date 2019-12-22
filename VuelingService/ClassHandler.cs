@@ -15,13 +15,13 @@ namespace VuelingService
         // - We iterate over the list and we save the different attribute in a list of strings
         // - We handle the expections if an error occurs when loading the XML file and save the error in a log file
 
-        public List<string> FirstFunction()
+        public List<string> GetAllRates(string url , string element)
         {
             List<string> list = new List<string>();
             ReadingFile Reader = new ReadingFile();
             try
             {
-                var rates = Reader.XmlFileToList("http://quiet-stone-2094.herokuapp.com/rates.xml", "rate");
+                var rates = Reader.XmlFileToList(url, element);
                 foreach (XElement e in rates)
                 {
                     list.Add("rate is: " + (e.Attribute("rate") != null ? e.Attribute("rate").Value : "")
